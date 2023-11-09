@@ -27,19 +27,59 @@
  *
  *
  */
-#define _GNU_SOURCE
-#include <sys/io.h>
+#include <fcntl.h>
 #include <linux/limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/io.h>
 #include <sys/ioctl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <termios.h>
 #include <time.h>
 #include <unistd.h>
-#include <fcntl.h>
-// VSCode doesn't think bool is standard C keyword,
+// VSCode doesn't think bool is an C keyword,
 // make it happy.
 #include <stdbool.h>
+struct STAGE
+{
+  struct LAYER_SET *body;
+  struct LAYER_SET *face;
+  struct LAYER_SET *left_eye;
+  struct LAYER_SET *right_eye;
+  struct LAYER_SET *hair;
+  struct LAYER_SET *ahoge;
+};
+struct ACTION
+{
+  int body_action;
+  int face_action;
+  int left_eye_action;
+  int right_eye_action;
+  int hair_action;
+  int ahoge_action;
+};
+struct LAYER_SET
+{
+  struct LAYER *layer;
+  int action;
+  unsigned short x_offset;
+  unsigned short y_offset;
+  struct LAYER_SET *next;
+};
+struct LAYER
+{
+  char *line;
+  struct LAYER *next_line;
+};
+enum
+{
+  BUF_SIZE = 16384,
+};
+#define SUTORA_VERSION "0.0"
+struct LAYER *register_layer(struct LAYER *layer, const char *path);
+void show_layer(struct LAYER *layer, unsigned short width, unsigned short x_offset, unsigned short y_offset);
+void show_stage(struct STAGE *stage, struct ACTION *action, unsigned short width);
+void error(const char *msg);
+void show_version_info();
