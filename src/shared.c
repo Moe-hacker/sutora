@@ -25,15 +25,15 @@ void show_version_info()
    */
   printf("\n");
   printf("\033[1;38;2;254;228;208m");
-  printf("   ●●●  ●   ● ●●●●●  ●●●   ●●●●    ●   \n");
-  printf("  ●     ●   ●   ●   ●   ●  ●   ●  ● ●  \n");
-  printf("   ●●●  ●   ●   ●   ●   ●  ●●●●  ●   ● \n");
-  printf("      ● ●   ●   ●   ●   ●  ●  ●  ●●●●● \n");
-  printf("   ●●●   ●●●    ●    ●●●   ●   ● ●   ● \n");
+  printf("     ●●●  ●   ● ●●●●●  ●●●   ●●●●    ●   \n");
+  printf("    ●     ●   ●   ●   ●   ●  ●   ●  ● ●  \n");
+  printf("     ●●●  ●   ●   ●   ●   ●  ●●●●  ●   ● \n");
+  printf("        ● ●   ●   ●   ●   ●  ●  ●  ●●●●● \n");
+  printf("     ●●●   ●●●    ●    ●●●   ●   ● ●   ● \n");
   printf("       Licensed under the MIT License\n");
   printf("          <https://mit-license.org>\n");
   printf("        Copyright (C) 2023 Moe-hacker\n");
   printf("%s%s%s", "           Sutora version : ", SUTORA_VERSION, "\n");
-  printf("%s%s%s\033[0m", "           Commit id       : ", SUTORA_COMMIT_ID, "\n");
+  printf("%s%s%s\033[0m", "           Commit id      : ", SUTORA_COMMIT_ID, "\n");
   printf("\n");
 }
