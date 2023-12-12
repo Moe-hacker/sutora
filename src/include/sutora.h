@@ -39,9 +39,28 @@
 #include <termios.h>
 #include <time.h>
 #include <unistd.h>
-// VSCode doesn't think bool is an C keyword,
-// make it happy.
-#include <stdbool.h>
+// Bool!!!
+#if __STDC_VERSION__ < 202000L
+#define bool _Bool
+#define true ((_Bool) + 1u)
+#define false ((_Bool) + 0u)
+#endif
+// Warnings.
+#define warning(...) fprintf(stderr, ##__VA_ARGS__)
+// Show error msg and exit.
+#define error(...)                                                                                                            \
+	{                                                                                                                     \
+		fprintf(stderr, ##__VA_ARGS__);                                                                               \
+		fprintf(stderr, "\033[1;38;2;254;228;208m%s\033[0m\n", "  .^.   .^.");                                        \
+		fprintf(stderr, "\033[1;38;2;254;228;208m%s\033[0m\n", "  /⋀\\_ﾉ_/⋀\\");                                      \
+		fprintf(stderr, "\033[1;38;2;254;228;208m%s\033[0m\n", " /ﾉｿﾉ\\ﾉｿ丶)|");                                      \
+		fprintf(stderr, "\033[1;38;2;254;228;208m%s\033[0m\n", " ﾙﾘﾘ >  x )ﾘ");                                       \
+		fprintf(stderr, "\033[1;38;2;254;228;208m%s\033[0m\n", "ﾉノ㇏  ^ ﾉ|ﾉ");                                       \
+		fprintf(stderr, "\033[1;38;2;254;228;208m%s\033[0m\n", "      ⠁⠁");                                           \
+		fprintf(stderr, "\033[1;38;2;254;228;208m%s\033[0m\n", "If you think something is wrong, please report at:"); \
+		fprintf(stderr, "\033[4;1;38;2;254;228;208m%s\033[0m\n", "https://github.com/Moe-hacker/ruri/issues");        \
+		exit(EXIT_FAILURE);                                                                                           \
+	}
 struct STAGE
 {
   struct LAYER_SET *body;
@@ -81,5 +100,4 @@ enum
 struct LAYER *register_layer(struct LAYER *layer, const char *path);
 void show_layer(struct LAYER *layer, unsigned short width, unsigned short x_offset, unsigned short y_offset);
 void show_stage(struct STAGE *stage, struct ACTION *action, unsigned short width);
-void error(const char *msg);
-void show_version_info();
+void show_version_info(void);

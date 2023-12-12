@@ -27,7 +27,7 @@
  *
  *
  */
-#include "sutora.h"
+#include "include/sutora.h"
 static void parse_args(int argc, char **argv, struct STAGE *stage)
 {
   // XXX

@@ -27,7 +27,7 @@
  *
  *
  */
-#include "sutora.h"
+#include "include/sutora.h"
 void show_stage(struct STAGE *stage, struct ACTION *action, u_short width)
 {
   printf("\033c");

@@ -4,7 +4,7 @@ CHECKER = clang-tidy --use-color
 CHECK_ARG = --checks=*,-clang-analyzer-security.insecureAPI.strcpy,-altera-unroll-loops,-cert-err33-c,-concurrency-mt-unsafe,-clang-analyzer-security.insecureAPI.DeprecatedOrUnsafeBufferHandling,-readability-function-cognitive-complexity,-cppcoreguidelines-avoid-magic-numbers,-readability-magic-numbers,-misc-no-recursion,-bugprone-easily-swappable-parameters,-readability-identifier-length,-cert-err34-c,-bugprone-assignment-in-if-condition,-altera*
 COMMIT_ID = -DSUTORA_COMMIT_ID=\"`git log --oneline|head -1|cut -d " " -f 1`\"
 all:
-	clang -ggdb -O0 -z norelro -z execstack -D_FORTIFY_SOURCE=3 -Og -Wall -Wextra -pedantic -Wconversion -std=gnu2x -Wno-newline-eof -fno-stack-protector -fno-omit-frame-pointer $(COMMIT_ID) $(SRC) -o $(BIN_TARGET)
+	clang -ggdb -O0 -z norelro -z execstack -Wno-gnu-zero-variadic-macro-arguments -Og -Wall -Wextra -pedantic -Wconversion -std=gnu2x -Wno-newline-eof -fno-stack-protector -fno-omit-frame-pointer $(COMMIT_ID) $(SRC) -o $(BIN_TARGET)
 format:
 	clang-format -i src/*
 check :
