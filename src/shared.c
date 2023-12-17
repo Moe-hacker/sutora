@@ -32,8 +32,8 @@ void show_version_info(void)
 {
   /*
    * Just show version info and license.
-   * Version info is defined in macro NEKOASC_VERSION.
-   * NEKOASC_COMMIT_ID is defined in Makefile.
+   * Version info is defined in macro SUTORA_VERSION.
+   * SUTORA_COMMIT_ID is defined in Makefile.
    */
   printf("\n");
   printf("\033[1;38;2;254;228;208m");
