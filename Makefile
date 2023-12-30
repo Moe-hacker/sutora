@@ -99,7 +99,7 @@ DEV_LD_FLAGS = $(NO_RELRO) $(NO_NX) $(NO_PIE)
 # Fix issues in termux (with bionic).
 BIONIC_FIX = -ffunction-sections -fdata-sections
 BIONIC_CFLAGS = $(OPTIMIZE_CFLAGS) $(BIONIC_FIX)
-LD_FLAGS_BIONIC = -Wl,--gc-sections
+BIONIC_LD_FLAGS = -Wl,--gc-sections
 # Target.
 objects = layer.o main.o shared.o stage.o
 O = out
@@ -136,7 +136,7 @@ static-bionic :CFLAGS=$(BIONIC_CFLAGS)
 static-bionic :build_dir $(objects)
 	@cd $(O)
 	$(LD_LOG) $(BIN_TARGET)
-	@$(CC) $(CFLAGS) -o $(BIN_TARGET) $(objects) $(LD_FLAGS)
+	@$(CC) $(CFLAGS) -o $(BIN_TARGET) $(objects) $(BIONIC_LD_FLAGS)
 	$(STRIP_LOG) $(BIN_TARGET)
 	@$(STRIP) $(BIN_TARGET)
 	@cp $(BIN_TARGET) ../
